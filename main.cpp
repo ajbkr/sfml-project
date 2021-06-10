@@ -11,25 +11,19 @@ int main() {
 
   sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 
-  sf::Texture enemyTexture;
-  if (!enemyTexture.loadFromFile("assets/enemy.png")) {
-    std::cerr << "Could not load enemy texture" << std::endl;
+  sf::Font font;
+  if (!font.loadFromFile("assets/ArialNarrow7-JB8E.ttf")) {
+    std::cerr << "Could not load font file" << std::endl;
     return 1;
   }
 
-  sf::Sprite enemySprite;
-  enemySprite.setTexture(enemyTexture);
-  enemySprite.setPosition(sf::Vector2f(100.0F, 100.0F));
-  enemySprite.setScale(sf::Vector2f(1.0F, 1.5F));
-
-  sf::Texture backgroundTexture;
-  if (!backgroundTexture.loadFromFile("assets/background.png")) {
-    std::cerr << "Could not load background texture" << std::endl;
-    return 1;
-  }
-
-  sf::Sprite backgroundSprite;
-  backgroundSprite.setTexture(backgroundTexture);
+  sf::Text text;
+  text.setFont(font);
+  text.setCharacterSize(30);
+  text.setFillColor(sf::Color::White);
+  text.setStyle(sf::Text::Bold);
+  text.setPosition(sf::Vector2f(100.0F, 100.0F));
+  text.setString("Here is some text");
 
   while (window.isOpen()) {
     sf::Event event;
@@ -41,8 +35,7 @@ int main() {
     }
 
     window.clear();
-    window.draw(backgroundSprite);
-    window.draw(enemySprite);
+    window.draw(text);
     window.display();
   }
 
