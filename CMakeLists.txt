@@ -15,8 +15,8 @@ target_include_directories(main PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
 
-find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
-target_link_libraries(main PRIVATE sfml-system sfml-network sfml-graphics sfml-window -lGL)
+find_package(SFML COMPONENTS audio graphics network system window CONFIG REQUIRED)
+target_link_libraries(main PRIVATE sfml-audio sfml-graphics sfml-network sfml-system sfml-window -lGL)
 
 # If you want SFML to provide an implementation of main():
 #target_link_libraries(main PRIVATE sfml-main)
