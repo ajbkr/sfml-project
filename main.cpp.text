@@ -1,8 +1,7 @@
 // Copyright 2021 Andrew J. Baker
-#include <iostream>  // cout, endl
+#include <iostream>  // cerr, cout, endl
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 
 #include "config.h"  // main_VERSION_MAJOR, main_VERSION_MINOR
 
@@ -12,14 +11,19 @@ int main() {
 
   sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 
-  sf::SoundBuffer buffer;
-  if (!buffer.loadFromFile("assets/damage.ogg")) {
-    std::cerr << "Could not load audio" << std::endl;
+  sf::Font font;
+  if (!font.loadFromFile("assets/ArialNarrow7-JB8E.ttf")) {
+    std::cerr << "Could not load font file" << std::endl;
     return 1;
   }
-  sf::Sound attackSound;
-  attackSound.setBuffer(buffer);
-  attackSound.play();
+
+  sf::Text text;
+  text.setFont(font);
+  text.setCharacterSize(30);
+  text.setFillColor(sf::Color::White);
+  text.setStyle(sf::Text::Bold);
+  text.setPosition(sf::Vector2f(100.0F, 100.0F));
+  text.setString("Here is some text");
 
   while (window.isOpen()) {
     sf::Event event;
@@ -31,6 +35,7 @@ int main() {
     }
 
     window.clear();
+    window.draw(text);
     window.display();
   }
 
