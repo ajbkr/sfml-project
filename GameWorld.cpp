@@ -1,5 +1,5 @@
 // NOLINT(legal/copyright)
-#include <iostream>  // cerr, endl
+#include <iostream>  // cerr, cout, endl
 
 #include "GameWorld.h"
 
@@ -39,6 +39,11 @@ bool GameWorld::run_game() {
       if (event.type == sf::Event::Closed) {
         window.close();
         return false;
+      } else if (event.type == sf::Event::MouseButtonPressed) {
+        if (enemy.check_if_hit(sf::Mouse::getPosition(window))) {
+          enemy.take_damage(damage);
+          std::cout << "Clicked on enemy" << std::endl;
+        }
       }
     }
 

@@ -28,3 +28,22 @@ bool Enemy::perform_setup() {
 void Enemy::draw(sf::RenderWindow *window) {
   window->draw(enemy_sprite);
 }
+
+bool Enemy::check_if_hit(sf::Vector2i mouse_pos) {
+  float enemy_min_x = enemy_sprite.getGlobalBounds().left;
+  float enemy_max_x = enemy_min_x + enemy_sprite.getGlobalBounds().width;
+  float enemy_min_y = enemy_sprite.getGlobalBounds().top;
+  float enemy_max_y = enemy_min_y + enemy_sprite.getGlobalBounds().height;
+
+  float mouse_x = mouse_pos.x;
+  float mouse_y = mouse_pos.y;
+
+  return mouse_x >= enemy_min_x && mouse_x <= enemy_max_x &&
+    mouse_y >= enemy_min_y && mouse_y <= enemy_max_y;
+}
+
+bool Enemy::take_damage(int damage) {
+  energy -= damage;
+  attack_sound.play();
+  return energy <= 0;
+}
