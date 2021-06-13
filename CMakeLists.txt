@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # add the executable
-add_executable(main main.cpp GameWorld.cpp)
+add_executable(main main.cpp Enemy.cpp GameWorld.cpp)
 
 configure_file(config.h.in config.h)
 target_include_directories(main PUBLIC

@@ -3,7 +3,9 @@
 #define GAMEWORLD_H_
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include <SFML/Audio.hpp>  // XXX req'd?
+
+#include "Enemy.h"
 
 class GameWorld {
   bool is_game_over;
@@ -11,6 +13,7 @@ class GameWorld {
   sf::Texture background_texture;
   sf::Sprite background;
   sf::Time time;
+  Enemy enemy;
 
   bool load_background();
 

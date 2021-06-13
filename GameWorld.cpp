@@ -3,7 +3,7 @@
 
 #include "GameWorld.h"
 
-GameWorld::GameWorld() {
+GameWorld::GameWorld(): enemy(100) {
   damage = 10;
 }
 
@@ -15,12 +15,13 @@ bool GameWorld::load_background() {
 
   background.setTexture(background_texture);
   background.scale(sf::Vector2f(0.8F, 1.1F));
+
   return true;
 }
 
 bool GameWorld::perform_setup() {
   is_game_over = false;
-  return load_background();
+  return load_background() && enemy.perform_setup();
 }
 
 bool GameWorld::run_game() {
@@ -38,6 +39,7 @@ bool GameWorld::run_game() {
 
     window.clear();
     window.draw(background);
+    enemy.draw(&window);
     window.display();
   }
   return false;
