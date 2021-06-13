@@ -31,7 +31,9 @@ bool GameWorld::run_game() {
   sf::Clock clock;
 
   while (window.isOpen()) {
-    time = clock.getElapsedTime();
+    if (!is_game_over) {
+      time = clock.getElapsedTime();
+    }
 
     sf::Event event;
 
@@ -40,18 +42,30 @@ bool GameWorld::run_game() {
         window.close();
         return false;
       } else if (event.type == sf::Event::MouseButtonPressed) {
-        if (enemy.check_if_hit(sf::Mouse::getPosition(window))) {
-          enemy.take_damage(damage);
-          std::cout << "Clicked on enemy" << std::endl;
+        if (!is_game_over) {
+          if (enemy.check_if_hit(sf::Mouse::getPosition(window))) {
+            is_game_over = enemy.take_damage(damage);
+            std::cout << "Clicked on enemy" << std::endl;
+          }
+        }
+      } else if (event.type == sf::Event::KeyPressed) {
+        if (is_game_over) {
+          if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            return true;
+          }
         }
       }
     }
 
     window.clear();
     window.draw(background);
-    enemy.draw(&window);
-    texts.draw_in_game_text(&window, time, enemy.energy);
-    // texts.draw_end_game_text(&window, time);
+
+    if (is_game_over) {
+      texts.draw_end_game_text(&window, time);
+    } else {
+      enemy.draw(&window);
+      texts.draw_in_game_text(&window, time, enemy.energy);
+    }
     window.display();
   }
   return false;

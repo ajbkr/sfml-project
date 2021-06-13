@@ -9,8 +9,9 @@ int main() {
   std::cout << "Version " << main_VERSION_MAJOR << "." << main_VERSION_MINOR <<
    std::endl;
 
-  GameWorld world = GameWorld();
   while (true) {
+    GameWorld world = GameWorld();
+
     if (!world.perform_setup()) {
       return 1;
     }
