@@ -3,3 +3,4 @@ build
 CPPClicker-Assets.zip
 CPPClicker-CourseFiles.zip
 *.swp
+.vscode
