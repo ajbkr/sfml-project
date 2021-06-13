@@ -19,7 +19,7 @@ class Enemy {
   bool perform_setup();
   bool check_if_hit(sf::Vector2i);
   bool take_damage(int);
-  void draw(sf::RenderWindow*);
+  void draw(sf::RenderWindow *);
 };
 
 #endif  // ENEMY_H_

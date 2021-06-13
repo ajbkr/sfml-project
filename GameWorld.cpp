@@ -21,13 +21,18 @@ bool GameWorld::load_background() {
 
 bool GameWorld::perform_setup() {
   is_game_over = false;
-  return load_background() && enemy.perform_setup();
+  enemy = Enemy(100);
+  texts = Texts();
+  return load_background() && enemy.perform_setup() && texts.perform_setup();
 }
 
 bool GameWorld::run_game() {
   sf::RenderWindow window(sf::VideoMode(500, 500), "Point and Click Game");
+  sf::Clock clock;
 
   while (window.isOpen()) {
+    time = clock.getElapsedTime();
+
     sf::Event event;
 
     while (window.pollEvent(event)) {
@@ -40,6 +45,8 @@ bool GameWorld::run_game() {
     window.clear();
     window.draw(background);
     enemy.draw(&window);
+    texts.draw_in_game_text(&window, time, enemy.energy);
+    // texts.draw_end_game_text(&window, time);
     window.display();
   }
   return false;

@@ -25,6 +25,6 @@ bool Enemy::perform_setup() {
   return true;
 }
 
-void Enemy::draw(sf::RenderWindow* window) {
+void Enemy::draw(sf::RenderWindow *window) {
   window->draw(enemy_sprite);
 }

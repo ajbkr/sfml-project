@@ -6,6 +6,7 @@
 #include <SFML/Audio.hpp>  // XXX req'd?
 
 #include "Enemy.h"
+#include "Texts.h"
 
 class GameWorld {
   bool is_game_over;
@@ -14,6 +15,7 @@ class GameWorld {
   sf::Sprite background;
   sf::Time time;
   Enemy enemy;
+  Texts texts;
 
   bool load_background();
 
